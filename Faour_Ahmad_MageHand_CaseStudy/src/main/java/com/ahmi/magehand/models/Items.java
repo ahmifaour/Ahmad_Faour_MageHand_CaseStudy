@@ -1,15 +1,12 @@
 package com.ahmi.magehand.models;
 
-import java.util.Collection;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,11 +25,8 @@ public class Items {
 	@Column(name = "Item Name", length = 50, nullable = false)
 	private String itemName;
 
-	@Column(name = "Item Description", length = 5000, nullable = false)
+	@Column(name = "Item Description", length = 500, nullable = false)
 	private String itemDesc;
-
-	@ManyToMany(targetEntity = CharacterSheets.class, cascade = { (CascadeType.ALL) })
-	private Collection<CharacterSheets> iCharacterSheets;
 
 	/**
 	 * 
@@ -51,11 +45,10 @@ public class Items {
 	 * @param iCharacterSheets the collection of character sheets that the item
 	 *                         belongs to.
 	 */
-	public Items(Long iId, String itemName, String itemDesc, Collection<CharacterSheets> iCharacterSheets) {
+	public Items(Long iId, String itemName, String itemDesc) {
 		this.iId = iId;
 		this.itemName = itemName;
 		this.itemDesc = itemDesc;
-		this.iCharacterSheets = iCharacterSheets;
 	}
 
 	/**
@@ -120,35 +113,14 @@ public class Items {
 
 	/**
 	 * 
-	 * Returns the collection of character sheets that the item belongs to.
-	 * 
-	 * @return the collection of character sheets that the item belongs to.
-	 */
-	public Collection<CharacterSheets> getiCharacterSheets() {
-		return iCharacterSheets;
-	}
-
-	/**
-	 * 
-	 * Sets the collection of character sheets that the item belongs to.
-	 * 
-	 * @param iCharacterSheets the new collection of character sheets that the item
-	 *                         belongs to.
-	 */
-	public void setiCharacterSheets(Collection<CharacterSheets> iCharacterSheets) {
-		this.iCharacterSheets = iCharacterSheets;
-	}
-
-	/**
-	 * 
 	 * Returns a string representation of the item.
 	 * 
 	 * @return a string representation of the item.
 	 */
+
 	@Override
 	public String toString() {
-		return "Items [iId=" + iId + ", itemName=" + itemName + ", itemDesc=" + itemDesc + ", iCharacterSheets="
-				+ iCharacterSheets + "]";
+		return "Items [iId=" + iId + ", itemName=" + itemName + ", itemDesc=" + itemDesc + "]";
 	}
 
 	/**
@@ -161,11 +133,10 @@ public class Items {
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(iCharacterSheets, iId, itemDesc, itemName);
+		return Objects.hash(iId, itemDesc, itemName);
 
 	}
-	
-	
+
 	/**
 	 * 
 	 * Indicates whether some other object is "equal to" this one.
@@ -184,8 +155,8 @@ public class Items {
 		if (getClass() != obj.getClass())
 			return false;
 		Items other = (Items) obj;
-		return Objects.equals(iCharacterSheets, other.iCharacterSheets) && Objects.equals(iId, other.iId)
-				&& Objects.equals(itemDesc, other.itemDesc) && Objects.equals(itemName, other.itemName);
+		return Objects.equals(iId, other.iId) && Objects.equals(itemDesc, other.itemDesc)
+				&& Objects.equals(itemName, other.itemName);
 
 	}
 

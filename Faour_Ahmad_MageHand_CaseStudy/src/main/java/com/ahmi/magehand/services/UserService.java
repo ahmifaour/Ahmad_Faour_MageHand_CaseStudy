@@ -58,4 +58,10 @@ public class UserService {
 		
 	}
 	
+public Iterable<User> listAll() {
+		
+		return userRepository.findAll();
+		
+	}
+	
 }

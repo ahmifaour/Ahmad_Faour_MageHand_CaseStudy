@@ -19,5 +19,7 @@ public interface CharacterSheetRepository extends JpaRepository<CharacterSheets,
 	public Optional<CharacterSheets> findCharacterBycsId(Long csId);
 
 	public void deleteCharacterBycsId(Long csId);
+	
+	public Long countBycsId(Long csId);
 
 }

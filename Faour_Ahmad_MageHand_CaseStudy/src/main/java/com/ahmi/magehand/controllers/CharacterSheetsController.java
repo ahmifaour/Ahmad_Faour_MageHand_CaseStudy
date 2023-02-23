@@ -22,12 +22,15 @@ import com.ahmi.magehand.services.CharacterSheetsService;
 public class CharacterSheetsController {
 	
 	@Autowired
-	private CharacterSheetsService characterSheetsService;
+	CharacterSheetsService characterSheetsService;
 	
 	@GetMapping("/charactersheets")
 	public String displayNewCharacterSheet(Model model) {
 		
+		Iterable<CharacterSheets> listCharacterSheets = characterSheetsService.listAll();
 		model.addAttribute("charactersheets", new CharacterSheets());
+		model.addAttribute("listCharacterSheets", listCharacterSheets);
+		
 		return "charactersheets";
 		
 	}

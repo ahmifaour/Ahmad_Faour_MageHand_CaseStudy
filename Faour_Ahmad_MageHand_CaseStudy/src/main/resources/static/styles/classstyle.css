@@ -69,3 +69,9 @@ body {
 	background-image:
 		url("https://thelivelifecouk.files.wordpress.com/2022/09/9a369-front.jpg?w=1200");
 }
+
+table, th, td {
+	
+	border: 1px solid;
+	
+}

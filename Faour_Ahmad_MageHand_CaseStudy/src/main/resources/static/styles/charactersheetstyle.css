@@ -69,3 +69,9 @@ body {
 	background-image:
 		url("https://memestatic.fjcdn.com/large/pictures/2f/79/2f7946_7668579.jpg");
 }
+
+table, th, td {
+	
+	border: 1px solid;
+	
+}

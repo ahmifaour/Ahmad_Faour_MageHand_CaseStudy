@@ -1,15 +1,12 @@
 package com.ahmi.magehand.models;
 
-import java.util.Collection;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,14 +20,11 @@ public class Races {
 	@Column(name = "Race Name", length = 50, nullable = false)
 	private String raceName;
 
-	@Column(name = "Race Description", length = 5000, nullable = false)
+	@Column(name = "Race Description", length = 1000, nullable = false)
 	private String raceDesc;
 
-	@Column(name = "Race Bonuses", length = 5000, nullable = false)
+	@Column(name = "Race Bonuses", length = 50, nullable = false)
 	private String raceBonus;
-
-	@ManyToMany(targetEntity = CharacterSheets.class, cascade = { (CascadeType.ALL) })
-	private Collection<CharacterSheets> rCharacterSheets;
 
 	/**
 	 * Default constructor for the Races class.
@@ -49,14 +43,12 @@ public class Races {
 	 * @param rCharacterSheets A collection of character sheets belonging to this
 	 *                         race.
 	 */
-	public Races(Long raceid, String raceName, String raceDesc, String raceBonus,
-			Collection<CharacterSheets> rCharacterSheets) {
+	public Races(Long raceid, String raceName, String raceDesc, String raceBonus) {
 		super();
 		this.raceid = raceid;
 		this.raceName = raceName;
 		this.raceDesc = raceDesc;
 		this.raceBonus = raceBonus;
-		this.rCharacterSheets = rCharacterSheets;
 	}
 
 	/**
@@ -134,27 +126,6 @@ public class Races {
 
 	/**
 	 * 
-	 * Gets the collection of character sheets associated with the race.
-	 * 
-	 * @return the collection of character sheets associated with the race
-	 */
-	public Collection<CharacterSheets> getrCharacterSheets() {
-		return rCharacterSheets;
-	}
-
-	/**
-	 * 
-	 * Sets the collection of character sheets associated with the race.
-	 * 
-	 * @param rCharacterSheets the collection of character sheets associated with
-	 *                         the race
-	 */
-	public void setrCharacterSheets(Collection<CharacterSheets> rCharacterSheets) {
-		this.rCharacterSheets = rCharacterSheets;
-	}
-
-	/**
-	 * 
 	 * Returns a string representation of the race object.
 	 * 
 	 * @return a string representation of the race object
@@ -162,7 +133,7 @@ public class Races {
 	@Override
 	public String toString() {
 		return "Races [raceid=" + raceid + ", raceName=" + raceName + ", raceDesc=" + raceDesc + ", raceBonus="
-				+ raceBonus + ", rCharacterSheets=" + rCharacterSheets + "]";
+				+ raceBonus + "]";
 	}
 
 	/**
@@ -173,7 +144,7 @@ public class Races {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(rCharacterSheets, raceBonus, raceDesc, raceName, raceid);
+		return Objects.hash(raceBonus, raceDesc, raceName, raceid);
 	}
 
 	/**
@@ -192,8 +163,7 @@ public class Races {
 		if (getClass() != obj.getClass())
 			return false;
 		Races other = (Races) obj;
-		return Objects.equals(rCharacterSheets, other.rCharacterSheets) && Objects.equals(raceBonus, other.raceBonus)
-				&& Objects.equals(raceDesc, other.raceDesc) && Objects.equals(raceName, other.raceName)
-				&& Objects.equals(raceid, other.raceid);
+		return Objects.equals(raceBonus, other.raceBonus) && Objects.equals(raceDesc, other.raceDesc)
+				&& Objects.equals(raceName, other.raceName) && Objects.equals(raceid, other.raceid);
 	}
 }

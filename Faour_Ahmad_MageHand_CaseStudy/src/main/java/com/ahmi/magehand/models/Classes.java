@@ -1,15 +1,12 @@
 package com.ahmi.magehand.models;
 
-import java.util.Collection;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -24,16 +21,13 @@ public class Classes {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long classId;
+	private int classId;
 
 	@Column(name = "Class Name", length = 50, nullable = false)
 	private String className;
 
 	@Column(name = "Class Description", length = 500, nullable = false)
 	private String classDesc;
-
-	@ManyToMany(targetEntity = CharacterSheets.class, cascade = { (CascadeType.ALL) })
-	private Collection<CharacterSheets> classCharacterSheets;
 
 	/**
 	 * 
@@ -53,11 +47,11 @@ public class Classes {
 	 * @param classCharacterSheets the collection of character sheets associated
 	 *                             with the class
 	 */
-	public Classes(Long classId, String className, Collection<CharacterSheets> classCharacterSheets) {
+	public Classes(int classId, String className, String classDesc) {
 
 		this.classId = classId;
 		this.className = className;
-		this.classCharacterSheets = classCharacterSheets;
+		this.classDesc = classDesc;
 
 	}
 
@@ -67,7 +61,7 @@ public class Classes {
 	 * 
 	 * @return the unique identifier of the class
 	 */
-	public Long getClassId() {
+	public int getClassId() {
 
 		return classId;
 
@@ -79,7 +73,7 @@ public class Classes {
 	 * 
 	 * @param classId the unique identifier of the class to set
 	 */
-	public void setClassId(Long classId) {
+	public void setClassId(int classId) {
 
 		this.classId = classId;
 
@@ -109,28 +103,15 @@ public class Classes {
 
 	}
 
-	/**
-	 * 
-	 * Returns the collection of character sheets associated with the class.
-	 * 
-	 * @return the collection of character sheets associated with the class
-	 */
-	public Collection<CharacterSheets> getClassCharacterSheets() {
+	public String getClassDesc() {
 
-		return classCharacterSheets;
+		return classDesc;
 
 	}
 
-	/**
-	 * 
-	 * Sets the collection of character sheets associated with the class.
-	 * 
-	 * @param classCharacterSheets the collection of character sheets associated
-	 *                             with the class to set
-	 */
-	public void setClassCharacterSheets(Collection<CharacterSheets> classCharacterSheets) {
+	public void setClassDesc(String classDesc) {
 
-		this.classCharacterSheets = classCharacterSheets;
+		this.classDesc = classDesc;
 
 	}
 
@@ -142,8 +123,7 @@ public class Classes {
 	 */
 	@Override
 	public String toString() {
-		return "Classes [classId=" + classId + ", className=" + className + ", classDesc=" + classDesc
-				+ ", classCharacterSheets=" + classCharacterSheets + "]";
+		return "Classes [classId=" + classId + ", className=" + className + ", classDesc=" + classDesc + "]";
 	}
 
 	/**
@@ -154,7 +134,7 @@ public class Classes {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(classCharacterSheets, classDesc, classId, className);
+		return Objects.hash(classDesc, classId, className);
 	}
 
 	/**
@@ -164,7 +144,7 @@ public class Classes {
 	 * @param obj the reference object with which to compare
 	 * @return true if this object is the same as the obj argument; false otherwise
 	 */
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -174,8 +154,7 @@ public class Classes {
 		if (getClass() != obj.getClass())
 			return false;
 		Classes other = (Classes) obj;
-		return Objects.equals(classCharacterSheets, other.classCharacterSheets)
-				&& Objects.equals(classDesc, other.classDesc) && Objects.equals(classId, other.classId)
+		return Objects.equals(classDesc, other.classDesc) && Objects.equals(classId, other.classId)
 				&& Objects.equals(className, other.className);
 	}
 

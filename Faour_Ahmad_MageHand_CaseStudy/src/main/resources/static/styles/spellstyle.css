@@ -69,3 +69,9 @@ body {
 	background-image:
 		url("https://cdn11.bigcommerce.com/s-xf1j2e32mt/images/stencil/1280x1280/products/1233/3396/5d-diamond-painting-wizard-magic-shop-kit-23525314789559__10023.1630509882.jpg?c=1");
 }
+
+table, th, td {
+	
+	border: 1px solid;
+	
+}

@@ -3,17 +3,18 @@ package com.ahmi.magehand.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ahmi.magehand.models.User;
+import com.ahmi.magehand.models.Items;
+
 
 /**
  * 
- * Repository for the User Model.
+ * Repository for the Items Model.
  *
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface ItemRepository extends JpaRepository <Items, Long>{
 	
-	public Long countById(Integer id);
+	public Long countByiId(Integer iId);
 	
 }

@@ -41,7 +41,7 @@ public class CreateAccountController {
 			
 		}
 		
-		return "redirect:/home";
+		return "redirect:/index";
 		
 	}
 	
@@ -51,7 +51,7 @@ public class CreateAccountController {
 		
 		userService.saveUser(user);
 		rAttributes.addFlashAttribute("message", "You have successfully created your account.");
-		return "redirect:/home";
+		return "redirect:/index";
 		
 	}
 		

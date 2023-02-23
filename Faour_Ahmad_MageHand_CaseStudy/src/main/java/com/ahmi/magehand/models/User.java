@@ -1,15 +1,12 @@
 package com.ahmi.magehand.models;
 
-import java.util.Collection;
 import java.util.Objects;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -55,11 +52,6 @@ public class User {
 	@Column(name = "Password", length = 50, nullable = false)
 	private String password;
 
-	/**
-	 * The collection of character sheets owned by the user.
-	 */
-	@OneToMany(targetEntity = CharacterSheets.class, cascade = { CascadeType.ALL })
-	private Collection<CharacterSheets> uCharacterSheets;
 
 	/**
 	 * Creates a new instance of the User class with default values for all fields.
@@ -77,18 +69,16 @@ public class User {
 	 * @param lName            the last name of the user.
 	 * @param email            the email address of the user.
 	 * @param password         the password of the user.
-	 * @param uCharacterSheets the collection of character sheets owned by the user.
+	 * 
 	 */
 
-	public User(Long id, String fName, String lName, String email, String password,
-			Collection<CharacterSheets> uCharacterSheets) {
+	public User(Long id, String fName, String lName, String email, String password) {
 		super();
 		this.id = id;
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
 		this.password = password;
-		this.uCharacterSheets = uCharacterSheets;
 	}
 
 	/**
@@ -189,26 +179,7 @@ public class User {
 		this.password = password;
 	}
 
-	/**
-	 * Returns a collection of CharacterSheets belonging to the User.
-	 * 
-	 * @return a Collection of CharacterSheets belonging to the User.
-	 */
-
-	public Collection<CharacterSheets> getuCharacterSheets() {
-		return uCharacterSheets;
-	}
-
-	/**
-	 * Sets the collection of CharacterSheets belonging to the User.
-	 * 
-	 * @param uCharacterSheets a Collection of CharacterSheets belonging to the
-	 *                         User.
-	 */
-
-	public void setuCharacterSheets(Collection<CharacterSheets> uCharacterSheets) {
-		this.uCharacterSheets = uCharacterSheets;
-	}
+	
 
 	/**
 	 * Returns a String representation of the User, including its id, first name,
@@ -220,7 +191,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", password="
-				+ password + ", uCharacterSheets=" + uCharacterSheets + "]";
+				+ password + "]";
 	}
 
 	/**
@@ -231,7 +202,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, fName, id, lName, password, uCharacterSheets);
+		return Objects.hash(email, fName, id, lName, password);
 	}
 
 	/**
@@ -252,7 +223,6 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(fName, other.fName) && Objects.equals(id, other.id)
-				&& Objects.equals(lName, other.lName) && Objects.equals(password, other.password)
-				&& Objects.equals(uCharacterSheets, other.uCharacterSheets);
+				&& Objects.equals(lName, other.lName) && Objects.equals(password, other.password);
 	}
 }

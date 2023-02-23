@@ -69,3 +69,9 @@ body {
 	background-image:
 		url("https://i.pinimg.com/originals/8c/60/ab/8c60ab9bc3d80a93a9a147d7790aa4c5.jpg");
 }
+
+table, th, td {
+	
+	border: 1px solid;
+	
+}

@@ -48,4 +48,10 @@ public class CharacterSheetsService {
 		
 	}
 
+	public Iterable<CharacterSheets> listAll() {
+		
+		return characterSheetRepository.findAll();
+		
+	}
+
 }

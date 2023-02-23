@@ -69,3 +69,9 @@ body {
 	background-image:
 		url("https://cdna.artstation.com/p/assets/images/images/013/418/340/large/samuel-couture-dnd-final.jpg?1539529091");
 }
+
+table, th, td {
+	
+	border: 1px solid;
+	
+}

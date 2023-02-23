@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" type="text/css"
 	href="/styles/charactersheetstyle.css">
@@ -21,7 +21,38 @@
 			<button id="character-sheets-btn"
 				onclick="location.href='charactersheets'">Character Sheets</button>
 		</nav>
-		<section></section>
+		<section>
+			<table>
+				<thead>
+					<tr>
+						<th>Character Name</th>
+						<th>Character Class</th>
+						<th>Character Race</th>
+						<th>Character Ability Scores</th>
+						<th>Character Items</th>
+						<th>Character Spells</th>
+					</tr>
+				</thead>
+				<tbody>
+				<th:block th:each="charactersheets : ${listCharacterSheets}">
+						<tr>
+							<td>[[${charactersheets.cName}]]</td>
+							<td>[[${charactersheets.cClass}]]</td>
+							<td>[[${charactersheets.cRace}]]</td>
+							<td>[[${charactersheets.cScores}]]</td>
+							<td>[[${charactersheets.cItems}]]</td>
+							<td>[[${charactersheets.cSpells}]]</td>
+						</tr>
+				</th:block>
+				</tbody>
+			</table>
+			<br>
+			<br>
+			<br>
+			<button id="create-character-btn"
+					onclick="location.href='createcharacter'">Create a
+					New Character</button>
+		</section>
 	</div>
 </body>
 </html>

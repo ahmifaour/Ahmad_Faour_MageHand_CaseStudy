@@ -24,10 +24,10 @@ public class Spells {
 	@Column(name = "Spell Name", length = 50, nullable = false)
 	private String sName;
 
-	@Column(name = "Spell Description", length = 5000, nullable = false)
+	@Column(name = "Spell Description", length = 500, nullable = false)
 	private String sDesc;
 
-	@Column(name = "Spell Level", length = 1, nullable = false)
+	@Column(name = "Spell Level", length = 10, nullable = false)
 	private String sLevel;
 
 	/**
@@ -44,10 +44,11 @@ public class Spells {
 	 * @param sName The name of the spell.
 	 * @param sDesc The description of the spell.
 	 */
-	public Spells(Long sId, String sName, String sDesc) {
+	public Spells(Long sId, String sName, String sDesc, String sLevel) {
 		this.sId = sId;
 		this.sName = sName;
 		this.sDesc = sDesc;
+		this.sLevel = sLevel;
 	}
 
 	/**
@@ -103,15 +104,27 @@ public class Spells {
 	public void setsDesc(String sDesc) {
 		this.sDesc = sDesc;
 	}
+	
+	public String getsLevel() {
+		
+		return sLevel;
+		
+	}
+	
+	public void setsLevel(String sLevel) {
+		
+		this.sLevel = sLevel;
+		
+	}
 
 	@Override
 	public String toString() {
-		return "Spells [sId=" + sId + ", sName=" + sName + ", sDesc=" + sDesc + "]";
+		return "Spells [sId=" + sId + ", sName=" + sName + ", sDesc=" + sDesc + ", sLevel=" + sLevel + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(sDesc, sId, sName);
+		return Objects.hash(sLevel, sDesc, sId, sName);
 	}
 
 	@Override
@@ -124,6 +137,6 @@ public class Spells {
 			return false;
 		Spells other = (Spells) obj;
 		return Objects.equals(sDesc, other.sDesc) && Objects.equals(sId, other.sId)
-				&& Objects.equals(sName, other.sName);
+				&& Objects.equals(sName, other.sName) && Objects.equals(sLevel, other.sLevel);
 	}
 }

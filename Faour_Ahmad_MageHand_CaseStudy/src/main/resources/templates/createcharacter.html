@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="/styles/createaccountstyle.css">
+<script src="createnewcharacterscript.js"></script>
+<title>Mage-Hand Repository Create A Character</title>
 </head>
 <body>
+	<div class="layout">
+		<h1>The Mage-Hand Repository</h1>
+		<header>Create a Character</header>
+		<nav>
+			<button id="login-btn" onclick="location.href='login'">Login</button>
+			<button id="account-btn" onclick="location.href='account'">My
+				Account</button>
+			<button id="home-btn" onclick="location.href='index'">Home</button>
+			<button id="races-btn" onclick="location.href='races'">Races</button>
+			<button id="classes-btn" onclick="location.href='classes'">Classes</button>
+			<button id="spells-btn" onclick="location.href='spells'">Spells</button>
+			<button id="items-btn" onclick="location.href='items'">Items</button>
+			<button id="character-sheets-btn"
+				onclick="location.href='charactersheets'">Character Sheets</button>
+		</nav>
+		<section>
+			<div th:if="${param.success}">
+				<div class="alert alert-info">Login Successful</div>
+			</div>
+			<div>
+				<form method="post" role="form" th:action="@{/createcharacter/save}"
+					th:object="${character}">
+					<div class="3">
+						<label class="label">Character Name: </label> <input class="control"
+							id="cName" name="cName" placeholder="Character Name"
+							th:field="*{cName}" type="text" />
+						<p th:errors="*{cName}" class="text-danger"
+							th:if="${#fields.hasErrors('cName')}"></p>
+					</div>
 
+					<div class="3">
+						<label class="label">Character Class: </label> <input class="control"
+							id="cClass" name="cClass" placeholder="Character Class"
+							th:field="*{cClass}" type="text" />
+						<p th:errors="*{cClass}" class="text-danger"
+							th:if="${#fields.hasErrors('cClass')}"></p>
+					</div>
+
+					<div class="3">
+						<label class="label">Character Race: </label> <input class="control"
+							id="cRace" name="cRace" placeholder="Character Race"
+							th:field="*{cRace}" type="text" />
+						<p th:errors="*{cRace}" class="text-danger"
+							th:if="${#fields.hasErrors('cRace')}"></p>
+					</div>
+					
+					<div class="3">
+						<label class="label">Character Ability Scores: </label> <input class="control"
+							id="cScores" name="cScores" placeholder="STR: 18, DEX: 12, CON: 16, etc."
+							th:field="*{cScores}" type="text" />
+						<p th:errors="*{cScores}" class="text-danger"
+							th:if="${#fields.hasErrors('cScores')}"></p>
+					</div>
+
+					<div class="3">
+						<label class="label">Character Items: </label> <input class="control"
+							id="cItems" name="cItems" placeholder="Longsword, One-handed weapon, 1d8+Strength"
+							th:field="*{cItems}" type="text" />
+						<p th:errors="*{cItems}" class="text-danger"
+							th:if="${#fields.hasErrors('cItems')}"></p>
+					</div>
+					
+					<div class="3">
+						<label class="label">Character Spells: </label> <input class="control"
+							id="cSpells" name="cSpells" placeholder="Fireball, level 3, spell description"
+							th:field="*{cSpells}" type="text" />
+						<p th:errors="*{cSpells}" class="text-danger"
+							th:if="${#fields.hasErrors('cSpells')}"></p>
+					</div>
+					<button type="submit">Submit Fields</button>
+				</form>
+			</div>
+		</section>
+	</div>
 </body>
 </html>
