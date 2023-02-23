@@ -29,7 +29,7 @@ Build and run the application
 
 Usage:
 Open the application in your web browser
-Create a new user account or log in with an existing one
+Create a new user account
 Create a new character sheet or edit an existing one
 Use the tools provided by the application to manage your character's stats, equipment, and abilities
 
